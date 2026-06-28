@@ -1,1 +1,0 @@
-# GadisQs3
